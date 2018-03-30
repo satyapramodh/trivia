@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # associations
   has_many :sessions
   has_many :inactive_sessions, -> { where(expired: true) }, class_name: "Session"
-  has_one :active_session, -> { find_by(expired: false) }, class_name: "Session"
+  has_many :active_sessions, -> { where(expired: false) }, class_name: "Session"
 
   # validations
   validates :username, :email, presence: true
@@ -25,6 +25,7 @@ class User < ApplicationRecord
     name || username
   end
 
+  # password and authentication management
   def encrypt_password
     if password.present?
       self.salt = BCrypt::Engine.generate_salt
@@ -49,4 +50,12 @@ class User < ApplicationRecord
     encrypted_password == BCrypt::Engine.hash_secret(login_password, salt)
   end
 
+  # session management
+  def end_current_session token
+    active_sessions.find_by(token: token).end
+  end
+
+  def end_all_sessions
+    active_sessions.update_all(expired: true)
+  end
 end

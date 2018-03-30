@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
   context "associations" do
     it { should have_many :sessions }
     it { should have_many :inactive_sessions }
-    it { should have_one :active_session }
+    it { should have_many :active_sessions }
   end
 
   context "method full_name: " do
@@ -55,6 +55,26 @@ RSpec.describe User, type: :model do
     it "should fail for wrong password" do
       user = FactoryBot.create(:user, password: "this is a test")
       expect(User.authenticate(user.username, "this is a game")).to eq(false)
+    end
+  end
+
+  context "sessions" do
+    it "#end_current_session should fail to end current session when token is invalid"
+
+    it "#end_current_session should end current session" do
+      session = FactoryBot.create(:session)
+      session.user.end_current_session session.token
+      expect(session.reload.expired).to be_truthy
+    end
+
+    it "#end_all_sessions should end all sessions" do
+      user = FactoryBot.create(:user)
+      2.times do
+        user.sessions.create
+      end
+      expect(user.active_sessions.count).to eq(2)
+      user.end_all_sessions
+      expect(user.active_sessions.count).to eq(0)
     end
   end
 
