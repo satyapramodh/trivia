@@ -15,5 +15,12 @@ FactoryBot.define do
     trait :text do
       mode "text"
     end
+
+    trait :radio_answers do
+
+    end
+
+    trait :text_answers do
+    end
   end
 end

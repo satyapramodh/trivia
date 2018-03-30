@@ -16,4 +16,11 @@ RSpec.describe Question, type: :model do
     it { should belong_to(:user) }
     it { should have_many(:answers) }
   end
+
+  context "validations for answers" do
+    it "should have atleast one answer"
+    it "should have one correct answer"
+    it "should have only one correct answer"
+    it "should have atleast two answers if radio/choice based question"
+  end
 end
