@@ -3,9 +3,13 @@ class User < ApplicationRecord
   attr_accessor :password
 
   # associations
-  has_many :sessions
+  has_many :sessions, dependent: :destroy
   has_many :inactive_sessions, -> { where(expired: true) }, class_name: "Session"
   has_many :active_sessions, -> { where(expired: false) }, class_name: "Session"
+  # TODO: #future should you delete questions/answers created by user?
+  has_many :created_questions, class_name: "Question", dependent: :destroy
+  has_many :created_answers, class_name: "Answer", dependent: :destroy
+
 
   # validations
   validates :username, :email, presence: true
