@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330060301) do
+ActiveRecord::Schema.define(version: 20180330071649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 20180330060301) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "token", default: "", null: false
+    t.boolean "expired", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_sessions_on_token", unique: true
+    t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "username", default: "", null: false
@@ -55,4 +65,5 @@ ActiveRecord::Schema.define(version: 20180330060301) do
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "questions", "users"
+  add_foreign_key "sessions", "users"
 end

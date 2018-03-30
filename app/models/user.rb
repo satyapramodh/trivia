@@ -2,6 +2,11 @@ class User < ApplicationRecord
   # create password getter, setter
   attr_accessor :password
 
+  # associations
+  has_many :sessions
+  has_many :inactive_sessions, -> { where(expired: true) }, class_name: "Session"
+  has_one :active_session, -> { find_by(expired: false) }, class_name: "Session"
+
   # validations
   validates :username, :email, presence: true
   validates :username, :email, uniqueness: true

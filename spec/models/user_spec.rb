@@ -15,6 +15,12 @@ RSpec.describe User, type: :model do
           for(:email) }
   end
 
+  context "associations" do
+    it { should have_many :sessions }
+    it { should have_many :inactive_sessions }
+    it { should have_one :active_session }
+  end
+
   context "method full_name: " do
     it "should fetch name when name is present" do
       user = FactoryBot.create(:user)
