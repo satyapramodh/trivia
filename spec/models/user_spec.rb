@@ -5,7 +5,6 @@ RSpec.describe User, type: :model do
   context "validations" do
     it { should validate_presence_of(:username) }
     it { should validate_presence_of(:email) }
-    it { should validate_presence_of(:encrypted_password) }
     it { should validate_uniqueness_of(:email) }
     it { should validate_uniqueness_of(:username) }
     it { should allow_values("john.doe@example.com", "john+doe@example.com",
@@ -26,7 +25,31 @@ RSpec.describe User, type: :model do
       user = User.create(FactoryBot.attributes_for(:user).slice!(:name))
       expect(user.full_name).to eq(user.username)
     end
+  end
 
+  context "set password" do
+    it "should hash password and set" do
+      user = FactoryBot.create(:user, password: "this is a test")
+      expect(user.encrypted_password).to be_present
+      expect(user.salt).to be_present
+      expect(user.password).to be_nil
+    end
+
+    it "should fail when password length is < 8" do
+      expect { FactoryBot.create(:user, password: "test") }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
+
+  context "verify password" do
+    it "should succeed for correct password" do
+      user = FactoryBot.create(:user, password: "this is a test")
+      expect(User.authenticate(user.username, "this is a test")).to eq(user)
+    end
+
+    it "should fail for wrong password" do
+      user = FactoryBot.create(:user, password: "this is a test")
+      expect(User.authenticate(user.username, "this is a game")).to eq(false)
+    end
   end
 
 end

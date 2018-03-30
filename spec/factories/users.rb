@@ -5,10 +5,7 @@ FactoryBot.define do
     name { Faker::Name.unique.name }
     username { "#{name}".split(" ").join("-").downcase }
     email { Faker::Internet.email }
-    encrypted_password Faker::Crypto.sha256
-
-    trait :noname do
-      name null
-    end
+    # encrypted_password Faker::Crypto.sha256
+    password "testpassword"
   end
 end
