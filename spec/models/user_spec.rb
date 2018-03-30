@@ -16,11 +16,15 @@ RSpec.describe User, type: :model do
           for(:email) }
   end
 
-  context "create" do
-    it "should create user with all params" do
+  context "method full_name: " do
+    it "should fetch name when name is present" do
+      user = FactoryBot.create(:user)
+      expect(user.full_name).to eq(user.name)
     end
 
-    it "should NOT create user with only some params" do
+    it "should fetch username when name not present" do
+      user = User.create(FactoryBot.attributes_for(:user).slice!(:name))
+      expect(user.full_name).to eq(user.username)
     end
 
   end
