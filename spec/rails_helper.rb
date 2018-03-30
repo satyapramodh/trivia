@@ -26,6 +26,12 @@ require 'rspec/rails'
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+# select database cleaner strategy
+# ref: http://stackoverflow.com/questions/11419536/postgresql-truncation-speed/11423886#11423886
+DatabaseCleaner.strategy = :transaction
+SimpleCov.start
+
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -54,6 +60,16 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+
+  # database cleaner
+  config.before(:each) do |example|
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do |example|
+    DatabaseCleaner.clean
+  end
 end
 
 Shoulda::Matchers.configure do |config|
