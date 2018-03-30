@@ -8,6 +8,10 @@ RSpec.describe Session, type: :model do
     it { should validate_uniqueness_of(:token) }
   end
 
+  context "associations" do
+    it { should belong_to(:user) }
+  end
+
   describe "#create" do
     it "should create new active session" do
       user = FactoryBot.create(:user)

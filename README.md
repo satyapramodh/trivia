@@ -1,4 +1,16 @@
-# README
+# Trivia
+
+## To Do
+> question and answer creation
+>> radio question
+>> text question
+> user-question relation
+> weekly scoreboard
+> apis
+> react
+
+
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
