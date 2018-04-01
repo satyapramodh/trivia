@@ -59,6 +59,7 @@ RSpec.describe User, type: :model do
   end
 
   context "sessions" do
+    # handle by controller
     it "#end_current_session should fail to end current session when token is invalid"
 
     it "#end_current_session should end current session" do
