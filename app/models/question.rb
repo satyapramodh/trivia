@@ -1,5 +1,8 @@
 class Question < ApplicationRecord
 
+  # Constants
+  WIN = 4.freeze
+  LOSE = -1.freeze
   # validations
   enum difficulty: [:easy, :medium, :hard]
   validates :title, :mode, :user, presence: true

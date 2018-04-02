@@ -2,18 +2,25 @@ FactoryBot.define do
   factory :question do
     title { Faker::Lorem.paragraph }
     difficulty { [0, 1, 2].sample }
-    mode { %w(radio text).sample }
     user
-    answered_count 1
-    correct_count 1
-    incorrect_count 1
+    answered_count 0
+    correct_count 0
+    incorrect_count 0
 
-    trait :radio do
+    factory :radio_question do
       mode "radio"
+      before(:create) do |question|
+        question.answers << FactoryBot.build(:answer, user: question.user, question: question, correct: true)
+        question.answers << FactoryBot.build(:answer, user: question.user, question: question)
+        question.answers << FactoryBot.build(:answer, user: question.user, question: question)
+      end
     end
 
-    trait :text do
+    factory :text_question do
       mode "text"
+      before(:create) do |question|
+        question.answers << FactoryBot.build(:answer, user: question.user, question: question, correct: true)
+      end
     end
 
   end

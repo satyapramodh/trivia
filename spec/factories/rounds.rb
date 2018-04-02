@@ -2,9 +2,13 @@ FactoryBot.define do
   factory :round do
     user
     question
-    answer
-    response { Faker::Lorem.words(2).join(" ") }
-    correct false
-    round 1
+    answer nil
+    response nil
+    correct nil
+    round nil
+
+    factory :text_round do
+      response { Faker::Lorem.words(2).join(" ") }
+    end
   end
 end
