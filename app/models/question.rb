@@ -2,7 +2,7 @@ class Question < ApplicationRecord
 
   # Constants
   WIN = 4.freeze
-  LOSE = -1.freeze
+  LOSS = -1.freeze
   # validations
   enum difficulty: [:easy, :medium, :hard]
   validates :title, :mode, :user, presence: true
@@ -18,5 +18,9 @@ class Question < ApplicationRecord
   belongs_to :user
   has_many :answers, dependent: :destroy
   accepts_nested_attributes_for :answers, reject_if: :all_blank, allow_destroy: true
+
+  def correct_answer
+    answers.select{|x| x.correct}.first
+  end
 
 end

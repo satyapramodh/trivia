@@ -1,10 +1,12 @@
 class Round < ApplicationRecord
+  # associations
   belongs_to :user
   belongs_to :question
   # In rails 5 belongs_to is required by default
   # https://stackoverflow.com/a/36330921/1124639
   belongs_to :answer, optional: true
 
+  # validations
   validates :user, :question, presence: true
   validate :response do
     errors.add(:response, "Rresponse should not be empty for a text based question") if response.nil? and question and question.mode == "text"
@@ -14,7 +16,13 @@ class Round < ApplicationRecord
     errors.add(:answer, "Answer should not be empty for a choice based question") if answer.blank? and question and question.mode == "radio"
   end
 
+  # callbacks
   before_validation :set_defaults, :update_response
+
+  # scopes
+  scope :this_week, -> { where('created_at BETWEEN ? AND ?', Time.now - 1.weeks, Time.now) }
+  scope :answered_correct, -> { where(correct: true) }
+  scope :answered_wrong, -> { where(correct: false) }
 
   def set_defaults
     self.round = 0 if self.round.nil?

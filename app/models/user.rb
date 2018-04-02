@@ -9,6 +9,7 @@ class User < ApplicationRecord
   # TODO: #future should you delete questions/answers created by user?
   has_many :created_questions, class_name: "Question", dependent: :destroy
   has_many :created_answers, class_name: "Answer", dependent: :destroy
+  has_many :rounds, dependent: :destroy
 
 
   # validations
@@ -61,5 +62,21 @@ class User < ApplicationRecord
 
   def end_all_sessions
     active_sessions.update_all(expired: true)
+  end
+
+  def get_weekly_score
+    compute_scores rounds.this_week
+  end
+
+  def get_total_score
+    compute_scores rounds
+  end
+
+  # TODO: save this value on user
+  def compute_scores results
+    wins = results.answered_correct.count
+    loss = results.answered_wrong.count
+    total = wins * Question::WIN + loss * Question::LOSS
+    return (total < 0 ? 0 : total)
   end
 end

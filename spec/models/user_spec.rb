@@ -79,4 +79,30 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "scores" do
+    before :each do
+      @user = FactoryBot.create(:user)
+      @questions = FactoryBot.create_list(:radio_question, 3)
+    end
+
+    it "should provide weekly scores" do
+      FactoryBot.create(:round, question: @questions[0], user: @user, answer: @questions[0].correct_answer)
+      FactoryBot.create(:round, question: @questions[1], user: @user, answer: @questions[1].correct_answer, created_at: 1.months.ago)
+      FactoryBot.create(:round, question: @questions[2], user: @user, answer: @questions[2].answers.select{|x| !x.correct}.first)
+      expect(@user.get_weekly_score).to eq(1*Question::WIN + 1*Question::LOSS)
+    end
+
+    it "should provide total score" do
+      FactoryBot.create(:round, question: @questions[0], user: @user, answer: @questions[0].correct_answer)
+      FactoryBot.create(:round, question: @questions[1], user: @user, answer: @questions[1].correct_answer, created_at: 1.months.ago)
+      FactoryBot.create(:round, question: @questions[2], user: @user, answer: @questions[2].answers.select{|x| !x.correct}.first)
+      expect(@user.get_total_score).to eq(2*Question::WIN + 1*Question::LOSS)
+    end
+
+    it "should provide score as 0 when actual score is < 0" do
+      FactoryBot.create(:round, question: @questions[2], user: @user, answer: @questions[2].answers.select{|x| !x.correct}.first)
+      expect(@user.get_total_score).to eq(0)
+    end
+  end
+
 end
