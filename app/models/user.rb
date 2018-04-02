@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
 
   # validations
-  validates :username, :email, presence: true
+  validates :username, :email, :password, :password_confirmation, presence: true
   validates :username, :email, uniqueness: true
   # email regex
   # \A([^@;,`!#$%^&*(){}=\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z

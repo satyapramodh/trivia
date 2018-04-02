@@ -1,6 +1,8 @@
 # Handling json responses the json-api way
 # https://philsturgeon.uk/api/2017/01/03/building-apis-with-rails-handling-errors-nicely/
 
+include ErrorSerializer
+
 module Response
   def render_json(object, status = :ok)
     render json: object, status: status
@@ -22,8 +24,7 @@ module Response
   end
 
   def render_json_validation_error(resource)
-    render json: resource, status: :bad_request,
-      adapter: :json_api,
-      serializer: ActiveModel::Serializer::ErrorSerializer
+    render json: ErrorSerializer.serialize(resource.errors), status: :bad_request
+
   end
 end

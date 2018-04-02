@@ -4,6 +4,12 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     api_routes = lambda do
       resources :questions, only: [:index, :show, :create]
+
+      resources :users, only: [:create] do
+        collection do
+          get :me
+        end
+      end
     end
 
     # v1 routes

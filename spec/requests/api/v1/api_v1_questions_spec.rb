@@ -13,7 +13,6 @@ RSpec.describe "Api::V1::Questions", type: :request do
     end
 
     it 'returns questions' do
-      binding.pry
       expect(json).not_to be_empty
       expect(json.size).to eq(10)
     end
@@ -29,7 +28,7 @@ RSpec.describe "Api::V1::Questions", type: :request do
 
     it 'returns questions' do
       expect(json).not_to be_empty
-      expect(json.size).to eq(10)
+      expect(json.size).to eq(1)
     end
   end
 end
