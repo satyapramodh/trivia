@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :question do
-    title { Faker::Lorem.paragraph }
+    title { Faker::Lorem.sentence }
     difficulty { [0, 1, 2].sample }
     user
     answered_count 0
