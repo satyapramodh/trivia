@@ -32,6 +32,7 @@ class Round < ApplicationRecord
     send "validate_#{question.mode}_answer" if question
   end
 
+  # TODO: update question's correct/incorrect counts
   def validate_text_answer
     return false if self.response.nil?
     ans = question.answers.first
