@@ -30,4 +30,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  error_messages:
+    question_not_found:
+      code: 40401
+      title: "Could not find question"
+      detail: "This question does not exist, or has been deleted."
