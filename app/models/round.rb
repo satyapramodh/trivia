@@ -14,20 +14,18 @@ class Round < ApplicationRecord
     errors.add(:answer, "Answer should not be empty for a choice based question") if answer.blank? and question and question.mode == "radio"
   end
 
-  before_validation :set_defaults
-  after_validation :update_response
-  # after_commit :update_score
+  before_validation :set_defaults, :update_response
 
   def set_defaults
     self.round = 0 if self.round.nil?
   end
 
   def update_response
-    return false unless self.errors.empty?
-    send "validate_#{question.mode}_answer"
+    send "validate_#{question.mode}_answer" if question
   end
 
   def validate_text_answer
+    return false if self.response.nil?
     ans = question.answers.first
     self.response = self.response.downcase
     self.correct = (self.response == ans.title.downcase)
@@ -38,11 +36,5 @@ class Round < ApplicationRecord
     self.correct = (answer == ans)
   end
 
-  # def update_score
-  #   # %U - Week number of the year. The week starts with Sunday. (00..53)
-  #   # %W - Week number of the year. The week starts with Monday. (00..53)
-  #   week = Time.now.strftime("%W").to_i
-  #   year = Time.now.year
-  # end
 end
 
