@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :session do
     user
-    token Faker::Crypto.sha256
+    token nil
     expired false
   end
 end

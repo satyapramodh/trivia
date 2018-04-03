@@ -25,6 +25,5 @@ module Response
 
   def render_json_validation_error(resource)
     render json: ErrorSerializer.serialize(resource.errors), status: :bad_request
-
   end
 end

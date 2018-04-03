@@ -29,9 +29,18 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
+# question 01
+# session 02
+# user 03
+
 en:
   error_messages:
     question_not_found:
       code: 40401
       title: "Could not find question"
       detail: "This question does not exist, or has been deleted."
+    session_not_found:
+      code: 40402
+      title: "Unauthorized access"
+      detail: "User authentication failed."
+

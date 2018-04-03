@@ -4,4 +4,7 @@ module RequestSpecHelper
     JSON.parse(response.body)
   end
 
+  def token_headers(token)
+    { "Authorization": "Bearer #{token}" }
+  end
 end
