@@ -65,4 +65,23 @@ RSpec.describe "Api::V1::Users", type: :request do
       end
     end
   end
+
+  describe "GET /api/v1/users/me" do
+    let(:session) { FactoryBot.create(:session) }
+
+    context "when user is signed in" do
+      it "should succeed" do
+        get '/api/v1/users/me', headers: token_headers(session.token)
+        expect(response).to have_http_status(:ok)
+        expect(json['username']).to eq(session.user.username)
+      end
+    end
+
+    context "when user is NOT signed in" do
+      it "should fail" do
+        get '/api/v1/users/me'
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+  end
 end

@@ -1,4 +1,5 @@
 class Api::V1::UsersController < Api::V1::ApplicationController
+  before_action :require_login, only: :me
 
   def create
     user = User.new(create_params)
@@ -12,7 +13,7 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   end
 
   def me
-    # TODO: get session token to show this resource
+    render_json current_user
   end
 
   private
