@@ -79,4 +79,11 @@ class User < ApplicationRecord
     total = wins * Question::WIN + loss * Question::LOSS
     return (total < 0 ? 0 : total)
   end
+
+  # questions
+  def unanswered_questions limit=10
+    Question.where.not(user: self, id: created_question_ids).limit(limit)
+  end
+
+  alias_method :trivia_questions, :unanswered_questions
 end
