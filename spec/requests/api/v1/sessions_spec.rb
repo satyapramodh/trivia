@@ -21,21 +21,6 @@ RSpec.describe "Api::V1::Sessions", type: :request do
   end
 
   describe "GET /api/v1/logout" do
-    let!(:user) { FactoryBot.create(:user) }
-    let(:session) { FactoryBot.create(:session, user: user) }
-
-    context "when valid user token is sent" do
-      it "should succeed" do
-        delete '/api/v1/logout', headers: token_headers(session.token)
-        expect(response).to have_http_status(:ok)
-      end
-    end
-
-    context "when invalid user token is sent" do
-      it "should fail" do
-        delete '/api/v1/logout'
-        expect(response).to have_http_status(:unauthorized)
-      end
-    end
+    include_examples "user authentication", "delete", '/api/v1/logout'
   end
 end
