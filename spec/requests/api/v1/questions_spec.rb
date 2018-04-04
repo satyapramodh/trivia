@@ -35,15 +35,72 @@ RSpec.describe "Api::V1::Questions", type: :request do
   end
 
   describe "POST /api/v1/questions/" do
-    let(:valid_params) { {  } }
-    # before { post '/api/v1/questions/', valid_params, headers: token_headers(session.token) }
+    let(:valid_params) { {
+      params: {
+        title: "Quia hic impedit animi aut veritatis.",
+        difficulty: 0,
+        mode: "radio",
+        answers_attributes: [
+          { title: "ans 1", correct: true },
+          { title: "ans 2", correct: false },
+          { title: "ans 3", correct: false }
+        ]
+      },
+      as: :json      
+    } }
 
-    it "returns status 201" do
-      # expect(response).to have_http_status(:created)
+    let(:invalid_qparams) { {
+      params: {
+        title: "",
+        difficulty: 0,
+        mode: "radio",
+        answers_attributes: [
+          { title: "ans 1", correct: true },
+          { title: "ans 2", correct: false },
+          { title: "ans 3", correct: false }
+        ]
+      },
+      as: :json      
+    } }
+    let(:invalid_aparams) { {
+      params: {
+        title: "Quia hic impedit animi aut veritatis.",
+        difficulty: 0,
+        mode: "radio",
+        answers_attributes: [
+          { title: "ans 1", correct: false },
+          { title: "ans 2", correct: false },
+          { title: "ans 3", correct: false }
+        ]
+      },
+      as: :json      
+    } }
+    
+    context "when valid params" do
+      before { post '/api/v1/questions/', valid_params.merge({headers: token_headers(session.token)}) }
+
+      it "should return status 201" do      
+        expect(response).to have_http_status(:created)
+      end
+
+      it 'should return question' do
+        expect(json["title"]).to eq(valid_params[:params][:title])
+        expect(json["answers"].length).to eq(valid_params[:params][:answers_attributes].length)
+      end
     end
 
-    it 'return question' do
+    context "when invalid params" do
+      it 'should return question error for question invalid params' do
+        post '/api/v1/questions/', invalid_qparams.merge({headers: token_headers(session.token)})
+        expect(response).to have_http_status(:bad_request)
+        expect(response.body).to match(/Title can't be blank/)
+      end
 
+      it 'should return question error for question invalid params' do
+        post '/api/v1/questions/', invalid_aparams.merge({headers: token_headers(session.token)})
+        expect(response).to have_http_status(:bad_request)
+        expect(response.body).to match(/should have a correct answer/)
+      end
     end
   end
 end

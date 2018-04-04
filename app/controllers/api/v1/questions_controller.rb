@@ -14,7 +14,14 @@ class Api::V1::QuestionsController < Api::V1::ApplicationController
   end
 
   def create
+    question = Question.new(create_params.merge({user: current_user}))
+    
+    if !question.save
+      render_json_validation_error question
+      return
+    end
 
+    render_json question, :created
   end
 
   # def update

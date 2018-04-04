@@ -5,7 +5,7 @@ RSpec.describe Answer, type: :model do
   context "validations" do
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:question) }
-    it { should validate_presence_of(:user) }
+    # it { should validate_presence_of(:user) }
     ## shoulda matchers: testing inclusion of boolean
     ## is not possible to fully test it. Not recommended to test
     # it { should validate_inclusion_of(:correct).

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330071649) do
+ActiveRecord::Schema.define(version: 20180401230907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,21 @@ ActiveRecord::Schema.define(version: 20180330071649) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
+  create_table "rounds", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "question_id"
+    t.bigint "answer_id"
+    t.string "response"
+    t.boolean "correct"
+    t.integer "round", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_rounds_on_answer_id"
+    t.index ["question_id"], name: "index_rounds_on_question_id"
+    t.index ["round"], name: "index_rounds_on_round"
+    t.index ["user_id"], name: "index_rounds_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id"
     t.string "token", default: "", null: false
@@ -65,5 +80,8 @@ ActiveRecord::Schema.define(version: 20180330071649) do
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "questions", "users"
+  add_foreign_key "rounds", "answers"
+  add_foreign_key "rounds", "questions"
+  add_foreign_key "rounds", "users"
   add_foreign_key "sessions", "users"
 end
