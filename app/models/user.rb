@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :created_questions, class_name: "Question", dependent: :destroy
   has_many :created_answers, class_name: "Answer", dependent: :destroy
   has_many :rounds, dependent: :destroy
+  has_many :answered_questions, through: :rounds, source: :question
 
 
   # validations
@@ -82,7 +83,10 @@ class User < ApplicationRecord
 
   # questions
   def unanswered_questions limit=10
-    Question.where.not(user: self, id: created_question_ids).limit(limit)
+    Question.where.
+    not(user: self, id: created_question_ids + answered_question_ids).
+    limit(limit).
+    order("RANDOM()")
   end
 
   alias_method :trivia_questions, :unanswered_questions

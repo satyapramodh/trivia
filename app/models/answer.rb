@@ -12,7 +12,7 @@ class Answer < ApplicationRecord
 
   # if user is not set on answer use the one from question
   def set_user
-    if self.question.user
+    if self.question and self.question.user
       self.user = self.question.user
     end
   end

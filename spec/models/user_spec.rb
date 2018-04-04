@@ -105,4 +105,30 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#unanswered_questions" do
+    let!(:user_a) { FactoryBot.create(:user) }
+    let!(:user_b) { FactoryBot.create(:user) }
+    let!(:questions_by_user_a) { FactoryBot.create_list(:text_question, 10, user: user_a) }
+    let!(:questions_by_user_b) { FactoryBot.create_list(:radio_question, 7, user: user_b) }
+
+    context "when user hasnt answered any questions before" do
+      it "should return all unanswered questions" do
+        expect(user_a.unanswered_questions.count).to eq(7)
+      end
+    end
+
+    context "when user answered some questions before" do
+      before do
+        # answer 2 questions from a pool of 7
+        sample_questions = questions_by_user_b.sample(2)
+        FactoryBot.create(:round, user: user_a, question: sample_questions.first, answer: sample_questions.first.answers.first)
+        FactoryBot.create(:round, user: user_a, question: sample_questions.last, answer: sample_questions.last.answers.last)
+      end
+      it "should return only unanswered questions" do
+        expect(user_a.unanswered_questions.count).to eq(5)
+      end
+    end
+
+  end
+
 end
