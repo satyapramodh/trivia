@@ -114,6 +114,7 @@ RSpec.describe User, type: :model do
     context "when user hasnt answered any questions before" do
       it "should return all unanswered questions" do
         expect(user_a.unanswered_questions.count).to eq(7)
+        expect(user_a.unanswered_questions.pluck(:user_id)).not_to include(user_a.id)
       end
     end
 
@@ -128,7 +129,58 @@ RSpec.describe User, type: :model do
         expect(user_a.unanswered_questions.count).to eq(5)
       end
     end
-
   end
+
+  describe "#question_response" do
+    let!(:user_a) { FactoryBot.create(:user) }
+    let!(:user_b) { FactoryBot.create(:user) }
+    let!(:text_questions) { FactoryBot.create_list(:text_question, 2, user: user_b) }
+    let!(:radio_questions) { FactoryBot.create_list(:radio_question, 2, user: user_b) }
+
+    context "when user responds with valid data" do
+      it "should return success for radio answer" do
+        round = user_a.question_response ({
+          question: radio_questions.first,
+          answer: radio_questions.first.answers.first
+        })
+        expect(round).not_to be_nil
+      end
+
+      it "should return success for text answer" do
+        round = user_a.question_response ({
+          question: text_questions.first,
+          answer: text_questions.first.answers.first,
+          response: "hello"
+        })
+        expect(round).not_to be_nil
+        expect(round.response).to eq("hello")
+      end
+    end
+
+    context "when user responds with invalid data" do
+      it "should return success for radio answer" do
+        round = user_a.question_response ({
+          question: nil,
+          answer: radio_questions.first.answers.first
+        })
+
+        expect(round.valid?).to be_falsey
+        expect(round.errors.full_messages.join).to match(/Question can't be blank/)
+      end
+
+      it "should return success for text answer" do
+        round = user_a.question_response ({
+          question: text_questions.first,
+          answer: text_questions.first.answers.first,
+          response: nil
+        })
+
+        expect(round.valid?).to be_falsey
+        expect(round.errors.full_messages.join).to match(/Response should not be empty/)
+      end
+    end
+  end
+
+
 
 end

@@ -15,7 +15,7 @@ class Api::V1::QuestionsController < Api::V1::ApplicationController
 
   def create
     question = Question.new(create_params.merge({user: current_user}))
-    
+
     if !question.save
       render_json_validation_error question
       return
@@ -29,13 +29,6 @@ class Api::V1::QuestionsController < Api::V1::ApplicationController
   # end
 
   private
-
-  def get_question
-    @question = current_user.created_questions.find(params[:id])
-    if @question.nil?
-      raise ActiveRecord::RecordNotFound
-    end
-  end
 
   def create_params
     params.permit(:title, :difficulty, :mode, answers_attributes: [:title, :correct] )

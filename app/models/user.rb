@@ -90,4 +90,13 @@ class User < ApplicationRecord
   end
 
   alias_method :trivia_questions, :unanswered_questions
+
+  def question_response options
+    # TODO: cannot respond to their own questions
+    rounds.create(
+      question: options[:question],
+      answer: options[:answer],
+      response: options[:response]
+    )
+  end
 end

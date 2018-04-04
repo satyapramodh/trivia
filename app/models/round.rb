@@ -9,11 +9,11 @@ class Round < ApplicationRecord
   # validations
   validates :user, :question, presence: true
   validate :response do
-    errors.add(:response, "Rresponse should not be empty for a text based question") if response.nil? and question and question.mode == "text"
+    errors.add(:response, "should not be empty for a text based question") if response.nil? and question and question.mode == "text"
   end
 
   validate :answer do
-    errors.add(:answer, "Answer should not be empty for a choice based question") if answer.blank? and question and question.mode == "radio"
+    errors.add(:answer, "should not be empty for a choice based question") if answer.blank? and question and question.mode == "radio"
   end
 
   # callbacks
