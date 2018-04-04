@@ -18,7 +18,7 @@ class Api::V1::TriviaController < Api::V1::ApplicationController
       render_json_validation_error trivia
       return
     end
-
+    # TODO: change serializer to show answer
     render_json trivia
   end
 
