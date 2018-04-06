@@ -5822,20 +5822,28 @@ body {
   color: black;
   border: 1px solid #ccc;
   background-color: white;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
-  @media (min-width: 768px) {
-    .authForm {
-      width: 500px;
-      padding: 50px; } }
-  @media (max-width: 767px) {
-    .authForm {
-      width: 100%;
-      padding: 10px; } }
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  min-width: 250px; }
+  .authForm h2 {
+    background-color: #1B998B;
+    margin: 0;
+    padding: 30px 0;
+    color: white; }
   .authForm .registerForm {
     margin: 0;
     padding: 25px; }
   .authForm .form-control {
     margin: 10px 0; }
+  @media (min-width: 768px) {
+    .authForm {
+      width: 500px; }
+      .authForm .registerForm {
+        padding: 50px; } }
+  @media (max-width: 767px) {
+    .authForm {
+      width: 100%; }
+      .authForm .registerForm {
+        padding: 10px; } }
 
 .form-control {
   border-radius: 0; }
