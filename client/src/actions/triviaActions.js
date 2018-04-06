@@ -4,6 +4,17 @@ export const registerUser = (options) => ({
   type: types.REGISTER_USER,
   options
 });
+
+export const registerUserSuccess = (options) => ({
+  type: types.REGISTER_USER_SUCCESS,
+  options
+});
+
+export const registerUserError = (error) => ({
+  type: types.REGISTER_USER_ERROR,
+  error
+});
+
 export const loginUser = (username, password) => ({
   type: types.LOGIN_USER,
   email,
