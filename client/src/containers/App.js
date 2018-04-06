@@ -16,7 +16,7 @@ class App extends React.Component {
     console.log("this.props", this.props);
     return (<Fragment>
         <div className="container-fluid text-center">
-          <Header />
+          {/* <Header /> */}
           <Auth />
           {/* {React.cloneElement({...this.props}.children, {...this.props})} */}
           {this.props.children}

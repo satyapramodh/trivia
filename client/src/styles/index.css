@@ -5813,3 +5813,37 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
+
+body {
+  background-color: #2E294E; }
+
+.authForm {
+  margin: 150px auto;
+  color: black;
+  border: 1px solid #ccc;
+  background-color: white;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); }
+  @media (min-width: 768px) {
+    .authForm {
+      width: 500px;
+      padding: 50px; } }
+  @media (max-width: 767px) {
+    .authForm {
+      width: 100%;
+      padding: 10px; } }
+  .authForm .registerForm {
+    margin: 0;
+    padding: 25px; }
+  .authForm .form-control {
+    margin: 10px 0; }
+
+.form-control {
+  border-radius: 0; }
+
+.btn {
+  border-radius: 0;
+  padding: 10px 15px;
+  font-size: 1.5rem; }
+
+.btn[type='submit'] {
+  width: 100%; }

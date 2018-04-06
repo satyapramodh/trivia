@@ -20,7 +20,7 @@ class Auth extends React.Component {
     }
     return (
       <Fragment>
-        <div className="container-fluid text-center">
+        <div className="container text-center">
           {alertText}
           <RegisterForm />
         </div>
