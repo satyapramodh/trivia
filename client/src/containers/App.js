@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from "../common/Header";
 import { Route } from "react-router-dom";
 import Home from "../components/Home";
+import Auth from './Auth';
 
 // The parent component renders the Header component and component(s) in the
 // route the user navigates to.
@@ -12,8 +13,9 @@ class App extends React.Component {
       <Fragment>
         <div className="container-fluid text-center">
         <Header />
+        <Auth />
         {this.props.children}
-        <Route path="/" component={Home} />
+        {/* <Route path="/" component={Home} /> */}
       </div>
       </Fragment>
     );
