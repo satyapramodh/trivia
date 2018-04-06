@@ -17,7 +17,7 @@ export const registerUserError = (error) => ({
 
 export const loginUser = (username, password) => ({
   type: types.LOGIN_USER,
-  email,
+  username,
   password
 });
 export const addRadioQuestion = (options) => ({

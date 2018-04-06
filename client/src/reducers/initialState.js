@@ -1,5 +1,7 @@
 export default {
   questions: [],
+  scores: [],
   currentUser: {},
-  scores: []
-}
+  notice: {},
+  error: {}
+};

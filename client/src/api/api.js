@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const ROOT = 'http://localhost:3001';
 
 // Basic Header Auth to API
@@ -26,12 +28,11 @@ export const userCreate = (options) => {
   * @params { String } password
   * @params { String } password_confirmation
   */
+  console.log("api options", options);
   return req
     .post(URL, options)
     .then(function(response) {
       console.log(response);
+      return response;
     })
-    .catch(function(error) {
-      console.log(error);
-    });
 }

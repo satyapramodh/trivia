@@ -21,4 +21,6 @@ Rails.application.routes.draw do
     namespace :v1, &api_routes
   end
 
+  # CORS ref: https://gist.github.com/dhoelzgen/cd7126b8652229d32eb4
+  match '*path', via: [:options], to:  lambda {|_| [204, {'Access-Control-Allow-Headers' => "Origin, Content-Type, Accept, Authorization, Token", 'Access-Control-Allow-Origin' => "*", 'Content-Type' => 'text/plain'}, []]}
 end

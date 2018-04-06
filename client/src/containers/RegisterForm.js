@@ -2,22 +2,85 @@ import React, { Fragment } from "react";
 // import PropTypes from "prop-types";
 // import { Route } from "react-router-dom";
 
+import { connect } from "react-redux";
+import { registerUser } from "../actions/triviaActions";
 // The parent component renders the Header component and component(s) in the
 // route the user navigates to.
 class RegisterForm extends React.Component {
+
+  submitHandler = event => {
+    event.preventDefault();
+
+    const options = {
+      username: this.refs.usernameInput.value,
+      name: this.refs.nameInput.value,
+      email: this.refs.emailInput.value,
+      password: this.refs.passwordInput.value,
+      password_confirmation: this.refs.password_confirmationInput.value
+    };
+    console.log("reg options", options);
+    this.props.dispatch(registerUser(options));
+  };
+
   render() {
-    return <Fragment>
-        <form className="registerForm" ref="registerForm" onSubmit="">
-          <input required className="form-control" type="text" name="name" ref={this.nameRef} placeholder="Name" />
-          <input required className="form-control" type="text" name="username" ref={this.usernameRef} placeholder="Username" />
-          <input required className="form-control" type="text" name="email" ref={this.emailRef} placeholder="Email" />
-          <input required className="form-control" type="text" name="password" ref={this.passwordRef} placeholder="Password" />
-          <input required className="form-control" type="text" name="password_confirmation" ref={this.password_confirmationRef} placeholder="Password confirmation" />
+    return (
+      <Fragment>
+        <form
+          className="registerForm"
+          ref="registerFormInput"
+          onSubmit={this.submitHandler.bind(this)}
+        >
+          <input
+            required
+            className="form-control"
+            type="text"
+            name="name"
+            ref="nameInput"
+            placeholder="Name"
+            defaultValue="testsample"
+          />
+          <input
+            required
+            className="form-control"
+            type="text"
+            name="username"
+            ref="usernameInput"
+            placeholder="Username"
+            defaultValue="testsample"
+          />
+          <input
+            required
+            className="form-control"
+            type="text"
+            name="email"
+            ref="emailInput"
+            placeholder="Email"
+            defaultValue="testsample@asd.com"
+          />
+          <input
+            required
+            className="form-control"
+            type="password"
+            name="password"
+            ref="passwordInput"
+            placeholder="Password"
+            defaultValue="testsample"
+          />
+          <input
+            required
+            className="form-control"
+            type="password"
+            name="password_confirmation"
+            ref="password_confirmationInput"
+            placeholder="Password confirmation"
+            defaultValue="testsample"
+          />
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
         </form>
-      </Fragment>;
+      </Fragment>
+    );
   }
 }
 
@@ -25,4 +88,11 @@ class RegisterForm extends React.Component {
 //   children: PropTypes.object.isRequired
 // };
 
-export default RegisterForm;
+
+const mapStateToProps = ({ notice, error }) => ({
+  notice,
+  error
+});
+
+
+export default connect(mapStateToProps)(RegisterForm);
