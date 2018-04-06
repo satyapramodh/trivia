@@ -11,11 +11,9 @@ class Auth extends React.Component {
     const { notice, error } = this.props;
     let alertText;
     if(notice){
-      debugger;
       alertText = <AlertDiv text={notice} labelName="success" />;
     }
     if(error){
-      debugger;
       alertText = <AlertDiv text={error} labelName="danger" />;
     }
     return (
@@ -33,6 +31,6 @@ class Auth extends React.Component {
 //   children: PropTypes.object.isRequired
 // };
 
- // Subscribe component to redux store and merge the state into component's props
+// Subscribe component to redux store and merge the state into component's props
 
 export default Auth;

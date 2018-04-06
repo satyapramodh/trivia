@@ -37,8 +37,8 @@ const mapStateToProps = ({notice, error, currentUser, questions, scores}) => ({
   scores
 });
 
-// function mapDispachToProps(dispatch) {
-//   return bindActionCreators(triviaActions, dispatch);
-// }
+function mapDispachToProps(dispatch) {
+  return bindActionCreators(triviaActions, dispatch);
+}
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispachToProps)(App);

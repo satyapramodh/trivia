@@ -2,7 +2,7 @@ import initialState from "./initialState";
 import * as types from "../constants/actionTypes";
 
 // Handles image related actions
-export default function(state = initialState.questions, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case types.ADD_RADIO_QUESTION:
       return state;
