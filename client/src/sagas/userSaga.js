@@ -8,12 +8,12 @@ import * as types from "../constants/actionTypes";
 export function* registerUserSaga({ options }) {
   try {
     const response = yield call(userCreate, options);
-    // console.log("registerUsersaga options", options)
+    console.log("registerUsersaga options", options)
     yield [
       put({ type: types.REGISTER_USER_SUCCESS, response }),
     ];
   } catch (error) {
-    // console.log("registerUser saga error", error)
+    console.log("registerUser saga error", error)
     yield put({ type: types.REGISTER_USER_ERROR, error });
   }
 }

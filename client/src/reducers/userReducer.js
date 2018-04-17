@@ -13,7 +13,7 @@ export default function(state = initialState, action) {
       return { ...state, notice: action.response.data };
     case types.REGISTER_USER_ERROR:
       console.log("state", {...state, error: action.error.response.data});
-      console.log("REGISTER_USER_ERROR action", action);
+      console.log("REGISTER_USER_ERROR action", action.error.response.data);
       return {...state, error: action.error.response.data};
     case types.LOGIN_USER:
       return { ...state, currentUser: action };
