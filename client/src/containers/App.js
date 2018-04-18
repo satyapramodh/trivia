@@ -13,7 +13,6 @@ import * as triviaActions from "../actions/triviaActions";
 // route the user navigates to.
 class App extends React.Component {
   render() {
-    console.log("this.props", this.props);
     return (<Fragment>
         <div className="container-fluid text-center">
           {/* <Header /> */}

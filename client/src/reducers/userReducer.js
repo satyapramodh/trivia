@@ -5,7 +5,7 @@ import * as types from "../constants/actionTypes";
 export default function(state = initialState, action) {
   switch (action.type) {
     case types.REGISTER_USER:
-      console.log("action", action);
+      console.log("REGISTER_USER action", action);
       return state;
     case types.REGISTER_USER_SUCCESS:
       console.log("state", { ...state, notice: action.response.data });
