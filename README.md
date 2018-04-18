@@ -1,4 +1,4 @@
-# Trivia App
+# Trivia App [![Build Status](https://travis-ci.org/satyapramodh/trivia.svg?branch=master)](https://travis-ci.org/satyapramodh/trivia.svg?branch=master)
 
 * Ruby version \
 Ruby 2.4.2 \
