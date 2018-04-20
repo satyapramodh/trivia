@@ -1,13 +1,19 @@
-import { userConstants } from "../_constants";
+import { userConstants } from "../constants";
+import initialState from './initialState';
 
-export default function registration(state = {}, action) {
+export function registration(state = initialState.alert, action) {
   switch (action.type) {
     case userConstants.REGISTER_REQUEST:
-      return { registering: true };
+      console.log("reg req action", action);
+      console.log("updated state is ", { ...state, registering: true, alert: { message: `${action.user.name} success` } });
+
+      return { ...state, registering: true, alert: { message: `${action.user.name} success` } };
     case userConstants.REGISTER_SUCCESS:
-      return {};
+      console.log("reg success action", action);
+      return state;
     case userConstants.REGISTER_FAILURE:
-      return {};
+      console.log("reg fail action", action);
+      return state;
     default:
       return state;
   }

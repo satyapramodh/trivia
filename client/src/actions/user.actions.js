@@ -1,15 +1,10 @@
 import { userConstants } from "../constants";
 
-export const userActions = {
-  register,
-  login,
-  logout
-};
+const register = (user) => {
+  console.log("user action", user);
 
-const register = (user) => ({
-  type: userConstants.REGISTER_REQUEST,
-  user
-});
+  return { type: userConstants.REGISTER_REQUEST, user };
+};
 
 const login = (username, password) => ({
   type: userConstants.LOGIN_REQUEST,
@@ -20,3 +15,9 @@ const login = (username, password) => ({
 const logout = () => ({
   type: userConstants.LOGOUT,
 });
+
+export const userActions = {
+  register,
+  login,
+  logout
+};
