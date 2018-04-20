@@ -1,4 +1,5 @@
 import { userHeader } from "../helpers";
+import axios from 'axios';
 
 export const authService = {
   register,
@@ -11,13 +12,13 @@ const req = axios.create({
   baseURL: API_URL,
   timeout: 1000,
   headers: {
-    Authorization: basicAuth(),
+    ...userHeader,
     "Content-Type": "application/json"
   }
 });
 
 function register(user) {
-  req
+  return req
   .post(`${API_URL}/api/v1/users`, user)
   .then((response) => {
     console.log("Register response", response);
@@ -27,7 +28,7 @@ function register(user) {
 }
 
 function login(username, password) {
-  req
+  return req
   .post(`${API_URL}/api/v1/login`, {username, password}).then(response => {
     console.log("Login response", response);
     return response;
@@ -35,7 +36,7 @@ function login(username, password) {
 }
 
 function logout() {
-  req
+  return req
   .delete(`${API_URL}/api/v1/logout`)
   .then((response) => {
     console.log("Logout response", response);

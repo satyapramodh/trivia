@@ -40,3 +40,9 @@ body {
 
 .btn[type='submit'] {
   width: 100%; }
+
+.home {
+  background-color: white;
+  min-height: 600px;
+  min-width: 900px;
+  margin: 25px auto; }

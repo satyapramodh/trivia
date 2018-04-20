@@ -44,7 +44,6 @@ class App extends React.Component {
 
 function mapStateToProps({ alertMessage }) {
   const { alert } = alertMessage;
-  console.log("App prop alert", alert);
   return {
     alert
   };

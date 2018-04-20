@@ -6,7 +6,7 @@ import { userActions } from "../actions";
 
 class Home extends React.Component {
   componentDidMount() {
-    this.props.dispatch(userActions.getAll());
+    // this.props.dispatch(userActions.getAll());
   }
 
   handleLogout() {
@@ -16,16 +16,14 @@ class Home extends React.Component {
   render() {
     const { user} = this.props;
     return (
-      <div className="col-md-6 col-md-offset-3">
+      <div className="home col-md-6 col-md-offset-3">
         <h1>Hi {user.name}!</h1>
         <p>You're logged in with React!!</p>
-        <h3>All registered users:</h3>
 
           <ul>
               <li key={user.id}>
                 {user.name}
                 <span>
-                  {" "}
                   - <a onClick={this.handleLogout()}>Delete</a>
                 </span>
               </li>
