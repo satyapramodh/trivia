@@ -1,11 +1,13 @@
-import { combineReducers } from "redux";
-import user from "./userReducer";
-import questions from "./questionReducer";
+import { combineReducers } from 'redux';
 
-// Combines all reducers to a single reducer function
+import { alertMessage } from "./alert.reducer";
+import { registration } from './register.reducer';
+import { authentication } from './login.reducer';
+
 const rootReducer = combineReducers({
-  user,
-  questions
+  alertMessage,
+  registration,
+  authentication
 });
 
 export default rootReducer;

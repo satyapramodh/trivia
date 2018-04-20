@@ -8,3 +8,5 @@ before_script:
   - cp config/database.travis.yml config/database.yml
   - rake db:migrate RAILS_ENV=test
 script: bundle exec rspec spec/
+notifications:
+  email: false

@@ -1,13 +1,11 @@
 import React, { Fragment } from "react";
-// import PropTypes from "prop-types";
-// import { Route } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { registerUser } from "../actions/triviaActions";
-// The parent component renders the Header component and component(s) in the
-// route the user navigates to.
-class RegisterForm extends React.Component {
+import { userActions } from "../actions";
+import AlertDiv from './AlertDiv';
 
+class RegisterForm extends React.Component {
   submitHandler = event => {
     event.preventDefault();
 
@@ -18,15 +16,17 @@ class RegisterForm extends React.Component {
       password: this.refs.passwordInput.value,
       password_confirmation: this.refs.password_confirmationInput.value
     };
-    console.log("reg options", options);
-    this.props.dispatch(registerUser(options));
+    console.log("reg form options", options);
+    this.props.register(options);
   };
 
   render() {
+    const msg = this.props.alert ? <AlertDiv message={this.props.alert.message} labelName="warning" /> : null
     return <Fragment>
         <div className="authForm">
           <h2>Register</h2>
           <form className="registerForm" ref="registerFormInput" onSubmit={this.submitHandler.bind(this)}>
+            {msg}
             <input className="form-control" type="text" name="name" ref="nameInput" placeholder="Name" defaultValue="pramodh" />
             <input required className="form-control" type="text" name="username" ref="usernameInput" placeholder="Username*" defaultValue="pramodh" />
             <input required className="form-control" type="text" name="email" ref="emailInput" placeholder="Email*" defaultValue="pramodh@abc.com" />
@@ -37,7 +37,7 @@ class RegisterForm extends React.Component {
             </button>
           </form>
           <p className="text-center">
-            <a href="#">Login</a>
+            <Link to="/login">Login</Link>
           </p>
         </div>
       </Fragment>;
@@ -48,11 +48,22 @@ class RegisterForm extends React.Component {
 //   children: PropTypes.object.isRequired
 // };
 
+function mapStateToProps({registration}) {
+  const { alert } = registration;
+  console.log("App prop alert", alert);
+  return {
+    alert
+  };
+}
 
-const mapStateToProps = ({ notice, error }) => ({
-  notice,
-  error
-});
+
+function mapDispachToProps(dispatch) {
+  return bindActionCreators(userActions, dispatch);
+}
 
 
-export default connect(mapStateToProps)(RegisterForm);
+const connectedRegisterForm = connect(mapStateToProps, mapDispachToProps)(
+  RegisterForm
+);
+
+export {connectedRegisterForm as RegisterForm};

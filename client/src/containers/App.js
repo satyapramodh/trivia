@@ -1,43 +1,57 @@
-import React, {Fragment} from "react";
-// import PropTypes from 'prop-types';
-import Header from "../common/Header";
-// import { Route } from "react-router-dom";
-// import Home from "../components/Home";
-import Auth from './Auth';
-
+import React from "react";
+import { Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as triviaActions from "../actions/triviaActions";
+import { history } from "../helpers";
+import { alertActions } from "../actions";
+import AuthRoute from "../components/AuthRoute";
+import {Home} from "../components/Home";
+import {LoginForm} from "../components/LoginForm";
+import {RegisterForm} from "../components/RegisterForm";
 
-// The parent component renders the Header component and component(s) in the
-// route the user navigates to.
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    history.listen((location, action) => {
+      // clear alert on location change
+      console.log("alertActions", alertActions);
+
+      this.props.clear();
+    });
+  }
+
   render() {
-    return (<Fragment>
-        <div className="container-fluid text-center">
-          {/* <Header /> */}
-          <Auth />
-          {/* {React.cloneElement({...this.props}.children, {...this.props})} */}
-          {this.props.children}
-          {/* <Route path="/" component={Home} /> */}
+    const { alert } = this.props;
+    return (
+      <Router history={history}>
+        <div className="container">
+          <div className="col-sm-8 col-sm-offset-2">
+            {/* {alert.message && (
+              <div className={`alert ${alert.type}`}>{alert.message}</div>
+            )} */}
+            <div>
+              <AuthRoute exact path="/" component={Home} />
+              <Route path="/login" component={LoginForm} />
+              <Route path="/register" component={RegisterForm} />
+            </div>
+          </div>
         </div>
-      </Fragment>);
+      </Router>
+    );
   }
 }
 
-// App.propTypes = {
-//   children: PropTypes.object.isRequired
-// };
-const mapStateToProps = ({notice, error, currentUser, questions, scores}) => ({
-  notice,
-  error,
-  currentUser,
-  questions,
-  scores
-});
-
-function mapDispachToProps(dispatch) {
-  return bindActionCreators(triviaActions, dispatch);
+function mapStateToProps({ alertMessage }) {
+  const { alert } = alertMessage;
+  return {
+    alert
+  };
 }
 
-export default connect(mapStateToProps, mapDispachToProps)(App);
+function mapDispachToProps(dispatch) {
+  return bindActionCreators(alertActions, dispatch);
+}
+
+const connectedApp = connect(mapStateToProps, mapDispachToProps)(App);
+export { connectedApp as App };

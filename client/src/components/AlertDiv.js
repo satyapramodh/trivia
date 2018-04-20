@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const AlertDiv = props => (
-  <div className="alert alert-${labelName}" role="alert">
-    {props.text}
+  <div className={"alert alert-" + props.labelName} role="alert">
+    {props.message}
   </div>
 );
 
 AlertDiv.propTypes = {
-  text: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
   labelName: PropTypes.string.isRequired
 };
 

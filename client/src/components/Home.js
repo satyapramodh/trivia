@@ -1,18 +1,50 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-// Home page component. This serves as the welcome page with link to the library
-const Home = () => (
-  <div className="jumbotron center">
-    <h1 className="lead">
-      Welcome to Trivia app
-    </h1>
-    <div>
-      <Link to="trivia">
-        <button className="btn btn-lg btn-primary">Answer Trivia</button>
-      </Link>
-    </div>
-  </div>
-);
+import { userActions } from "../actions";
 
-export default Home;
+class Home extends React.Component {
+  componentDidMount() {
+    // this.props.dispatch(userActions.getAll());
+  }
+
+  handleLogout() {
+    return e => this.props.dispatch(userActions.logout());
+  }
+
+  render() {
+    const { user} = this.props;
+    return (
+      <div className="home col-md-6 col-md-offset-3">
+        <h1>Hi {user.name}!</h1>
+        <p>You're logged in with React!!</p>
+
+          <ul>
+              <li key={user.id}>
+                {user.name}
+                <span>
+                  - <a onClick={this.handleLogout()}>Delete</a>
+                </span>
+              </li>
+
+          </ul>
+
+        <p>
+          <Link to="/logout">Logout</Link>
+        </p>
+      </div>
+    );
+  }
+}
+
+function mapStateToProps(state) {
+  const { authentication } = state;
+  const { user } = authentication;
+  return {
+    user
+  };
+}
+
+const connectedHome = connect(mapStateToProps)(Home);
+export { connectedHome as Home };
