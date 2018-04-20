@@ -18,7 +18,7 @@ const req = axios.create({
 
 function register(user) {
   req
-  .post(`{API_URL}/api/v1/users`, user)
+  .post(`${API_URL}/api/v1/users`, user)
   .then((response) => {
     console.log("Register response", response);
     return response;
@@ -28,7 +28,7 @@ function register(user) {
 
 function login(username, password) {
   req
-  .post(`{API_URL}/api/v1/login`, {username, password}).then(response => {
+  .post(`${API_URL}/api/v1/login`, {username, password}).then(response => {
     console.log("Login response", response);
     return response;
   });
@@ -36,7 +36,7 @@ function login(username, password) {
 
 function logout() {
   req
-  .delete(`{API_URL}/api/v1/logout`)
+  .delete(`${API_URL}/api/v1/logout`)
   .then((response) => {
     console.log("Logout response", response);
     return response;
