@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { userActions } from "../actions";
+import AlertDiv from './AlertDiv';
 
 class RegisterForm extends React.Component {
   submitHandler = event => {
@@ -20,10 +21,12 @@ class RegisterForm extends React.Component {
   };
 
   render() {
+    const msg = this.props.alert ? <AlertDiv message={this.props.alert.message} labelName="warning" /> : null
     return <Fragment>
         <div className="authForm">
           <h2>Register</h2>
           <form className="registerForm" ref="registerFormInput" onSubmit={this.submitHandler.bind(this)}>
+            {msg}
             <input className="form-control" type="text" name="name" ref="nameInput" placeholder="Name" defaultValue="pramodh" />
             <input required className="form-control" type="text" name="username" ref="usernameInput" placeholder="Username*" defaultValue="pramodh" />
             <input required className="form-control" type="text" name="email" ref="emailInput" placeholder="Email*" defaultValue="pramodh@abc.com" />
