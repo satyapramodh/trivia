@@ -24,6 +24,7 @@ export function authentication(state = initialState.alert, action) {
       console.log("login fail action", action.error.response.data);
       return { ...state, alert: { message: action.error.response.data.errors[0].detail } };
     case userConstants.LOGOUT:
+      localStorage.clear();
       return {};
     default:
       return state;

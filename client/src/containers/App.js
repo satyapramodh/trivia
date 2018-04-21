@@ -8,6 +8,8 @@ import AuthRoute from "../components/AuthRoute";
 import {Home} from "../components/Home";
 import {LoginForm} from "../components/LoginForm";
 import {RegisterForm} from "../components/RegisterForm";
+import {Logout} from "../components/Logout";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -34,6 +36,7 @@ class App extends React.Component {
               <AuthRoute exact path="/" component={Home} />
               <Route path="/login" component={LoginForm} />
               <Route path="/register" component={RegisterForm} />
+              <Route path="/logout" component={Logout} />
             </div>
           </div>
         </div>
