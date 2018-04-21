@@ -10,7 +10,7 @@ export const authService = {
 const API_URL = "http://localhost:3001";
 const req = axios.create({
   baseURL: API_URL,
-  timeout: 1000,
+  timeout: 5000,
   headers: {
     ...userHeader,
     "Content-Type": "application/json"

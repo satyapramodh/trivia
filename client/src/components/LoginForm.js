@@ -75,10 +75,11 @@ class LoginForm extends React.Component {
 // };
 
 function mapStateToProps({authentication}) {
-  const { alert } = authentication;
-  console.log("App prop alert", alert);
+  const { user, loggedIn, alert } = authentication;
   return {
-    alert
+    alert,
+    user,
+    loggedIn
   };
 }
 

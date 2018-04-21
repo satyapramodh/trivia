@@ -17,8 +17,6 @@ class App extends React.Component {
 
     history.listen((location, action) => {
       // clear alert on location change
-      console.log("alertActions", alertActions);
-
       this.props.clear();
     });
   }
@@ -29,9 +27,6 @@ class App extends React.Component {
       <Router history={history}>
         <div className="container">
           <div className="col-sm-8 col-sm-offset-2">
-            {/* {alert.message && (
-              <div className={`alert ${alert.type}`}>{alert.message}</div>
-            )} */}
             <div>
               <AuthRoute exact path="/" component={Home} />
               <Route path="/login" component={LoginForm} />
@@ -45,10 +40,10 @@ class App extends React.Component {
   }
 }
 
-function mapStateToProps({ alertMessage }) {
-  const { alert } = alertMessage;
+function mapStateToProps({ alert, user }) {
   return {
-    alert
+    alert,
+    user
   };
 }
 
