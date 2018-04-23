@@ -1,8 +1,7 @@
-// $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 // Import bootstrap
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-// @import "node_modules/bootstrap/css/bootstrap.min.css";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 // app scss
 @import 'app.scss';

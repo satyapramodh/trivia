@@ -3,39 +3,39 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import FontAwesome from 'react-fontawesome';
 import { userActions } from "../actions";
+import Navbar from "./Navbar";
+
 
 class Home extends React.Component {
   render() {
     const {user} = this.props;
 
-    return <div className="home col-md-6 col-md-offset-3">
-        <h1>Hi {user ? user.username : ""}!</h1>
-        <p>You're logged in!!</p>
-        <Link to="/logout">Logout</Link>
+    return <div className="home">
+        <Navbar user={user} />
 
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title text-center">
-              <FontAwesome name="plus" />
-            </h5>
-            <h6 className="card-subtitle mb-2 text-muted">Create</h6>
-            <p className="card-text">Create new Trivia questions</p>
-            <a href="#" className="card-link">
-              Create
-            </a>
+        <div className="row">
+          <div className="col-md-3 col-xs-12">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title text-center">
+                  <FontAwesome name="plus" spin />
+                </h5>
+                <p className="card-text">Create new Trivia questions</p>
+                <Link className="card-link" to="/create">Create</Link>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title text-center">
-              <FontAwesome name="list-alt" />
-            </h5>
-            <h6 className="card-subtitle mb-2 text-muted">Play</h6>
-            <p className="card-text">Play Trivia</p>
-            <a href="#" className="card-link">
-              Play
-            </a>
+          <div className="col-md-3 col-xs-12">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title text-center">
+                  <FontAwesome name="list-alt" spin />
+                </h5>
+                <p className="card-text">Play Trivia</p>
+                <Link className="card-link" to="/play">Play</Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>;

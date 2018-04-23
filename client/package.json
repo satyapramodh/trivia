@@ -6,6 +6,7 @@
   "repository": "https://github.com/satyapramodh/trivia",
   "dependencies": {
     "axios": "^0.18.0",
+    "bootstrap-sass": "^3.3.7",
     "history": "^4.7.2",
     "node-sass-chokidar": "^1.2.2",
     "npm-run-all": "^4.1.2",

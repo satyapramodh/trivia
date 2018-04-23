@@ -26,14 +26,12 @@ class App extends React.Component {
     return (
       <Router history={history}>
         <div className="container">
-          <div className="col-sm-8 col-sm-offset-2">
             <div>
               <AuthRoute exact path="/" component={Home} />
               <Route path="/login" component={LoginForm} />
               <Route path="/register" component={RegisterForm} />
               <Route path="/logout" component={Logout} />
             </div>
-          </div>
         </div>
       </Router>
     );
