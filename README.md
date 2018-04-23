@@ -1,4 +1,7 @@
-# Trivia App [![Build Status](https://travis-ci.org/satyapramodh/trivia.svg?branch=master)](https://travis-ci.org/satyapramodh/trivia.svg?branch=master)
+# Trivia App [![Build Status](https://travis-ci.org/satyapramodh/trivia.svg?branch=master)](https://travis-ci.org/satyapramodh/trivia?branch=master)
+
+
+Build passing URL: https://travis-ci.org/satyapramodh/trivia?branch=master
 
 * Ruby version \
 Ruby 2.4.2 \
@@ -53,11 +56,12 @@ Deploy to heroku. Procfiles are already set.
 4. Watchers for scss precompiling setup.
 5. Redux, Redux saga setup for User Registration.
 6. Deployment configuration to Heroku.
+7. Redux, Redux saga setup for Login, Question.
+8. API integration with frontend.
 
 # Backlog
 1. Many Frontend React components and UI.
-2. Redux, Redux saga setup for Login, Question, Answer, Rounds and Scoreboard.
-3. API integration with frontend.
+2. Redux, Redux saga setup for  Answer, Rounds and Scoreboard.
 
 # Future
 1. Timed (10sec) question/answering.

@@ -26,9 +26,9 @@ class LoginForm extends React.Component {
           <form className="LoginForm" ref="LoginInputForm" onSubmit={this.submitHandler.bind(this)}>
             <AlertDiv alert={alert} />
             <input required className="form-control" type="text"
-            name="username" ref="usernameInput" placeholder="Username*" defaultValue="pramodh" />
+            name="username" ref="usernameInput" placeholder="Username*" />
             <input required className="form-control" type="password"
-            name="password" ref="passwordInput" placeholder="Password*" defaultValue="password" />
+            name="password" ref="passwordInput" placeholder="Password*" />
             <button type="submit" className="btn btn-success">
               Submit
             </button>

@@ -27,11 +27,11 @@ class RegisterForm extends React.Component {
           <h2>Register</h2>
           <form className="registerForm" ref="registerFormInput" onSubmit={this.submitHandler.bind(this)}>
             <AlertDiv alert={alert} />
-            <input className="form-control" type="text" name="name" ref="nameInput" placeholder="Name" defaultValue="pramodh" />
-            <input required className="form-control" type="text" name="username" ref="usernameInput" placeholder="Username*" defaultValue="pramodh" />
-            <input required className="form-control" type="text" name="email" ref="emailInput" placeholder="Email*" defaultValue="pramodh@abc.com" />
-            <input required className="form-control" type="password" name="password" ref="passwordInput" placeholder="Password*" defaultValue="pramodh1234" />
-            <input required className="form-control" type="password" name="password_confirmation" ref="password_confirmationInput" placeholder="Password confirmation*" defaultValue="pramodh2345" />
+            <input className="form-control" type="text" name="name" ref="nameInput" placeholder="Name" />
+            <input required className="form-control" type="text" name="username" ref="usernameInput" placeholder="Username*" />
+            <input required className="form-control" type="text" name="email" ref="emailInput" placeholder="Email*" />
+            <input required className="form-control" type="password" name="password" ref="passwordInput" placeholder="Password*" />
+            <input required className="form-control" type="password" name="password_confirmation" ref="password_confirmationInput" placeholder="Password confirmation*" />
             <button type="submit" className="btn btn-success">
               Submit
             </button>
