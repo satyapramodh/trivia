@@ -5,31 +5,26 @@ import { connect } from "react-redux";
 import { userActions } from "../actions";
 
 class Home extends React.Component {
-  handleLogout(e) {
-    return e => this.props.dispatch(userActions.logout());
-  }
-
   render() {
-    // const {user} = this.props;
+    const {user} = this.props;
+
     return (
       <div className="home col-md-6 col-md-offset-3">
-        {/* <h1>Hi {user.username}!</h1>
-        <p>You're logged in with React!!</p>
 
-        {user.username}
-        <span>
-          - <a onClick={this.handleLogout()}>Delete</a>
-        </span> */}
-
-        <p>
+        <h1>
+        Hi {user ? user.username : ""}!
+        </h1>
+        <p>You're logged in!!</p>
           <Link to="/logout">Logout</Link>
-        </p>
       </div>
     );
   }
 }
 
 function mapStateToProps({user}) {
+  // const {user} = authentication;
+  console.log("home user", user);
+
   return {
     user
   };

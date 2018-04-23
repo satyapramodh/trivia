@@ -22,7 +22,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { alert } = this.props;
+    const { alert, user } = this.props;
     return (
       <Router history={history}>
         <div className="container">
@@ -40,7 +40,10 @@ class App extends React.Component {
   }
 }
 
-function mapStateToProps({ alert, user }) {
+function mapStateToProps(state) {
+  console.log("app component updated", state, user);
+  const { alert, user } = state;
+
   return {
     alert,
     user

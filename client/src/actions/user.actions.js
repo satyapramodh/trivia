@@ -15,8 +15,13 @@ const logout = () => ({
   type: userConstants.LOGOUT,
 });
 
+const getCurrentUser = () => ({
+  type: userConstants.GET_CURRENT_USER
+})
+
 export const userActions = {
   register,
   login,
-  logout
+  logout,
+  getCurrentUser
 };

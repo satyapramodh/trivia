@@ -1,7 +1,7 @@
 import { alertConstants } from "../constants";
 import initialState from "./initialState";
 
-export function alertMessage(state = initialState, action) {
+export default function (state = initialState.alert, action) {
   switch (action.type) {
     case alertConstants.SUCCESS:
       return {

@@ -1,5 +1,5 @@
-import { takeLatest } from "redux-saga/effects";
-import { registerUserSaga, loginUserSaga } from "./authentication.saga";
+import { takeLatest, all } from "redux-saga/effects";
+import { registerUserSaga, loginUserSaga, logoutUserSaga } from "./authentication.saga";
 import * as types from "../constants";
 
 // Watches for SEARCH_MEDIA_REQUEST action type asynchronously
@@ -8,5 +8,13 @@ export function* watchUserRegister() {
 }
 
 export function* watchUserLogin() {
-  yield takeLatest(types.userConstants.LOGIN_REQUEST, loginUserSaga);
+  yield all([
+    takeLatest(types.userConstants.REGISTER_REQUEST, registerUserSaga),
+    takeLatest(types.userConstants.LOGIN_REQUEST, loginUserSaga),
+    takeLatest(types.userConstants.LOGOUT, logoutUserSaga)
+  ])
+}
+
+export function* watchUserLogout() {
+  yield takeLatest(types.userConstants.LOGOUT, logoutUserSaga);
 }

@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { userActions } from '../actions';
 import AlertDiv from "./AlertDiv";
+import { push } from "react-router-redux";
 
 class LoginForm extends React.Component {
   submitHandler = event => {
@@ -11,15 +12,21 @@ class LoginForm extends React.Component {
 
     const options = {
       username: this.refs.usernameInput.value,
-      email: this.refs.emailInput.value,
       password: this.refs.passwordInput.value,
     };
     console.log("login form options", options);
-    this.props.login(options.username, options.password);
+    this.props
+    .login(options.username, options.password);
   };
 
   render() {
-    const msg = this.props.alert ? <AlertDiv message={this.props.alert.message} labelName="warning" /> : null;
+    const { alert, loggedIn, history } = this.props;
+    if(loggedIn){
+      console.log("loggedin is true");
+      // history.push("/");
+    }
+    // (alert) ? <AlertDiv message={this.props.alert.message} labelName="warning" /> :
+    const msg = null;
     return (
       <Fragment>
         <div className="authForm">
@@ -42,20 +49,11 @@ class LoginForm extends React.Component {
             <input
               required
               className="form-control"
-              type="text"
-              name="email"
-              ref="emailInput"
-              placeholder="Email*"
-              defaultValue="pramodh@abc.com"
-            />
-            <input
-              required
-              className="form-control"
               type="password"
               name="password"
               ref="passwordInput"
               placeholder="Password*"
-              defaultValue="pramodh1234"
+              defaultValue="awesomesp"
             />
             <button type="submit" className="btn btn-primary">
               Submit
@@ -74,8 +72,9 @@ class LoginForm extends React.Component {
 //   children: PropTypes.object.isRequired
 // };
 
-function mapStateToProps({authentication}) {
-  const { user, loggedIn, alert } = authentication;
+function mapStateToProps(state) {
+  console.log("loginform component updated", state, user);
+  const { user, loggedIn, alert } = state;
   return {
     alert,
     user,
