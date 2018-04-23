@@ -56,7 +56,7 @@ Deploy to heroku. Procfiles are already set.
 4. Watchers for scss precompiling setup.
 5. Redux, Redux saga setup for User Registration.
 6. Deployment configuration to Heroku.
-7. Redux, Redux saga setup for Login, Question.
+7. Redux, Redux saga setup for Registration, Login, Questions List, Question and Answer components.
 8. API integration with frontend.
 
 # Backlog
