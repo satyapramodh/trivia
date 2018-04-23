@@ -20,7 +20,6 @@ function register(user) {
   return req
   .post(`api/v1/users`, user)
   .then((response) => {
-    console.log("Register response", response);
     return response;
   })
 
@@ -29,7 +28,6 @@ function register(user) {
 function login(username, password) {
   return req
   .post(`api/v1/login`, {username, password}).then(response => {
-    console.log("Login response", response);
     return response;
   });
 }
@@ -38,7 +36,6 @@ function logout() {
   return req
   .delete(`api/v1/logout`)
   .then((response) => {
-    console.log("Logout response", response);
     return response;
   })
 }

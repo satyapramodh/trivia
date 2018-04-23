@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import FontAwesome from 'react-fontawesome';
-import { userActions } from "../actions";
 import Navbar from "./Navbar";
 
 
@@ -43,9 +42,6 @@ class Home extends React.Component {
 }
 
 function mapStateToProps({user}) {
-  // const {user} = authentication;
-  console.log("home user", user);
-
   return {
     user
   };

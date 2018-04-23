@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const Navbar = props => (
@@ -42,9 +41,5 @@ const Navbar = props => (
     </div>
   </nav>
 );
-
-{/* Navbar.propTypes = {
-  user: PropTypes.,
-}; */}
 
 export default Navbar;

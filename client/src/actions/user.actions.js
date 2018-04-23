@@ -1,9 +1,9 @@
 import { userConstants } from "../constants";
 
-const register = (user) => {
-  console.log("user action", user);
-  return { type: userConstants.REGISTER_REQUEST, user };
-};
+const register = user => ({
+  type: userConstants.REGISTER_REQUEST,
+  user
+});
 
 const login = (username, password) => ({
   type: userConstants.LOGIN_REQUEST,

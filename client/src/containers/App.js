@@ -16,7 +16,6 @@ class App extends React.Component {
     super(props);
 
     history.listen((location, action) => {
-      // clear alert on location change
       this.props.clear();
     });
   }
@@ -38,10 +37,7 @@ class App extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  console.log("app component updated", state, user);
-  const { alert, user } = state;
-
+function mapStateToProps({ alert, user }) {
   return {
     alert,
     user
