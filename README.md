@@ -60,8 +60,9 @@ Deploy to heroku. Procfiles are already set.
 8. API integration with frontend.
 
 # Backlog
-1. Many Frontend React components and UI.
-2. Redux, Redux saga setup for  Answer, Rounds and Scoreboard.
+1. Frontend React components for Question create form and scoreboard,
+2. Updated ui for questions to show one question at a time with next and previous buttons instead of current boilerplate design.
+3. Redux, Redux saga setup for  Answer, Rounds and Scoreboard.
 
 # Future
 1. Timed (10sec) question/answering.
