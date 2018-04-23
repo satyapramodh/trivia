@@ -12,7 +12,7 @@ Rails
 /.bundle
 
 # Ignore the default database config file.
-config/database.yml
+# config/database.yml
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -89,3 +89,6 @@ typings/
 
 # next.js build output
 .next
+
+# Ignore application configuration
+/config/application.yml

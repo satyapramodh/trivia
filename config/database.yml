@@ -1,0 +1,18 @@
+development:
+  adapter: <%= ENV["DB_ADAPTER"] %>
+  encoding: <%= ENV["DB_ENCODING"] %>
+  database: <%= ENV["DB_DATABASE"] %>
+  pool: <%= ENV["DB_POOL"] %>
+  username: <%= ENV["DB_USERNAME"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+
+test:
+  adapter: <%= ENV["DB_ADAPTER"] %>
+  encoding: <%= ENV["DB_ENCODING"] %>
+  database: <%= ENV["DB_DATABASE"] %>
+  pool: <%= ENV["DB_POOL"] %>
+  username: <%= ENV["DB_USERNAME"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+
+production:
+  url: <%= ENV["DATABASE_URL"] %>
