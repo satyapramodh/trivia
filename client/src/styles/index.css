@@ -5862,3 +5862,6 @@ body {
   min-height: 600px;
   min-width: 900px;
   margin: 25px auto; }
+
+.card {
+  width: 18rem; }

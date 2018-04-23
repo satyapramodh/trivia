@@ -53,7 +53,7 @@ class LoginForm extends React.Component {
               name="password"
               ref="passwordInput"
               placeholder="Password*"
-              defaultValue="awesomesp"
+              defaultValue="password"
             />
             <button type="submit" className="btn btn-primary">
               Submit

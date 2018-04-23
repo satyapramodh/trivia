@@ -2,6 +2,7 @@ class Api::V1::ApplicationController < ActionController::API
   include Response
   include ExceptionHandler
   include ActionController::HttpAuthentication::Token::ControllerMethods
+  include ActionController::MimeResponds
 
   def require_login
     authenticate_user || render_json_error(:unauthorized, :session_not_found)
@@ -9,6 +10,12 @@ class Api::V1::ApplicationController < ActionController::API
 
   def current_user
     @current_user ||= authenticate_user
+  end
+
+   def fallback_index_html
+    respond_to do |format|
+      format.html { render body: Rails.root.join('public/index.html').read }
+    end
   end
 
   private
