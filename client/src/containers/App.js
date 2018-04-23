@@ -10,6 +10,8 @@ import {LoginForm} from "../components/LoginForm";
 import {RegisterForm} from "../components/RegisterForm";
 import {Logout} from "../components/Logout";
 
+import { QuestionList } from "../components/QuestionList";
+import { CreateQuestion } from "../components/CreateQuestion";
 
 class App extends React.Component {
   constructor(props) {
@@ -22,18 +24,19 @@ class App extends React.Component {
 
   render() {
     const { alert, user } = this.props;
-    return (
-      <Router history={history}>
+    return <Router history={history}>
         <div className="container">
-            <div>
-              <AuthRoute exact path="/" component={Home} />
-              <Route path="/login" component={LoginForm} />
-              <Route path="/register" component={RegisterForm} />
-              <Route path="/logout" component={Logout} />
-            </div>
+          <div>
+            <AuthRoute exact path="/" component={Home} />
+            <Route path="/login" component={LoginForm} />
+            <Route path="/register" component={RegisterForm} />
+            <Route path="/logout" component={Logout} />
+
+            <Route path="/play" component={QuestionList} />
+            <Route path="/create" component={CreateQuestion} />
+          </div>
         </div>
-      </Router>
-    );
+      </Router>;
   }
 }
 

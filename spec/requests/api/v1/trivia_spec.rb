@@ -22,7 +22,9 @@ RSpec.describe "Api::V1::Trivia", type: :request do
   end
 
   describe "POST /api/v1/trivia" do
-    let!(:valid_params) {{ params: { q_id: radio_questions.first.id, a_id: radio_questions.first.answers.first.id } }}
+    let!(:valid_params) {{ params: {
+      q_id: radio_questions.first.id,
+      a_id: radio_questions.first.answers.first.id } }}
     let!(:invalid_params) {{ params: { q_id: text_questions.first.id } }}
 
     context "when user answered trivia with valid params" do
