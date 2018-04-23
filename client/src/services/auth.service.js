@@ -7,7 +7,7 @@ export const authService = {
   logout
 }
 
-const API_URL = "http://localhost:3001";
+const API_URL = process.env.API_URL || "http://localhost:3001";
 const req = axios.create({
   baseURL: API_URL,
   timeout: 5000,

@@ -48,7 +48,7 @@ Deploy to heroku. Procfiles are already set.
 
 # Finished
 1. Backend done.
-2. APIs are available at `http:/localhost:3001`.
+2. APIs are available at `process.env.API_URL OR "http://localhost:3001"`.
 3. Currently React, Redux, Redux saga, bootstrap-sass are setup.
 4. Watchers for scss precompiling setup.
 5. Redux, Redux saga setup for User Registration.
