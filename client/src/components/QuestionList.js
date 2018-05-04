@@ -25,7 +25,7 @@ class QuestionList extends React.Component {
     return <div className="home">
         <Navbar user={user} />
         <h2>Trivia Questions</h2>
-        {this.renderQuestions(questions)}
+      {questions ? this.renderQuestions(questions) : "Loading..."}
       </div>;
   }
 }
